@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+export const baseUrl: string = 'http://localhost:3000/';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

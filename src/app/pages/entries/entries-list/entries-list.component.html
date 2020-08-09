@@ -1,0 +1,33 @@
+<app-bread-crumb [items]="[{text: 'Lançamentos'}]"></app-bread-crumb>
+<app-page-header button-class="btn-success" button-link="new" button-text="+ Novo Lançamento" page-title="Lançamentos"></app-page-header>
+
+<table class="table table-hover">
+  <thead>
+  <tr class="bg-primary text-light">
+    <th>Lançamentos</th>
+    <th>Categorias</th>
+    <th class="text-right">Valor R$</th>
+    <th class="text-center">Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let entrada of resources">
+    <td>
+      <strong>{{entrada.name}}</strong><br>
+      <small class="text-success">{{entrada.date}}</small>&nbsp;
+      <small *ngIf="entrada.description">{{entrada.description}}</small>
+    </td>
+    <td>{{entrada.category.name}}</td>
+    <td class="text-right">
+      <strong [class.text-success]="entrada.type == 'revenue'"
+              [class.text-danger]="entrada.type == 'expense'">{{entrada.amount}}</strong>
+      <br>
+      <span class="badge badge-light"> {{entrada.getPaidText()}}</span>
+    </td>
+    <td class="text-center">
+      <a [routerLink]="[entrada.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
+      <button (click)="deleteResource(entrada)" class="btn btn-outline-danger btn-sm">Excluir</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
